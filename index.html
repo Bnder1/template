@@ -1,0 +1,1115 @@
+<!doctype html>
+
+<html lang="fr-FR" class="no-js">
+<head>
+
+<!-- Meta Tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+	
+
+<!--Shortcut icon-->
+<title>BSD-SYS Enterprise IT Security &#8211; Sécurité informatique d&#039;Entreprise &amp; Cybersécurité</title>
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="BSD-SYS Enterprise IT Security &raquo; Flux" href="https://www.bsd-sys.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="BSD-SYS Enterprise IT Security &raquo; Flux des commentaires" href="https://www.bsd-sys.com/comments/feed/" />
+<meta property='og:site_name' content='BSD-SYS Enterprise IT Security'/><meta property='og:url' content='https://www.bsd-sys.com/'/><meta property='og:title' content='Accueil'/><meta property='og:type' content='article'/>		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"wpemoji":"https:\/\/www.bsd-sys.com\/wp-includes\/js\/wp-emoji.js?ver=5.4.1","twemoji":"https:\/\/www.bsd-sys.com\/wp-includes\/js\/twemoji.js?ver=5.4.1"}};
+			/**
+ * @output wp-includes/js/wp-emoji-loader.js
+ */
+
+( function( window, document, settings ) {
+	var src, ready, ii, tests;
+
+	// Create a canvas element for testing native browser support of emoji.
+	var canvas = document.createElement( 'canvas' );
+	var context = canvas.getContext && canvas.getContext( '2d' );
+
+	/**
+	 * Checks if two sets of Emoji characters render the same visually.
+	 *
+	 * @since 4.9.0
+	 *
+	 * @private
+	 *
+	 * @param {number[]} set1 Set of Emoji character codes.
+	 * @param {number[]} set2 Set of Emoji character codes.
+	 *
+	 * @return {boolean} True if the two sets render the same.
+	 */
+	function emojiSetsRenderIdentically( set1, set2 ) {
+		var stringFromCharCode = String.fromCharCode;
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set1 ), 0, 0 );
+		var rendered1 = canvas.toDataURL();
+
+		// Cleanup from previous test.
+		context.clearRect( 0, 0, canvas.width, canvas.height );
+		context.fillText( stringFromCharCode.apply( this, set2 ), 0, 0 );
+		var rendered2 = canvas.toDataURL();
+
+		return rendered1 === rendered2;
+	}
+
+	/**
+	 * Detects if the browser supports rendering emoji or flag emoji.
+	 *
+	 * Flag emoji are a single glyph made of two characters, so some browsers
+	 * (notably, Firefox OS X) don't support them.
+	 *
+	 * @since 4.2.0
+	 *
+	 * @private
+	 *
+	 * @param {string} type Whether to test for support of "flag" or "emoji".
+	 *
+	 * @return {boolean} True if the browser can render emoji, false if it cannot.
+	 */
+	function browserSupportsEmoji( type ) {
+		var isIdentical;
+
+		if ( ! context || ! context.fillText ) {
+			return false;
+		}
+
+		/*
+		 * Chrome on OS X added native emoji rendering in M41. Unfortunately,
+		 * it doesn't work when the font is bolder than 500 weight. So, we
+		 * check for bold rendering support to avoid invisible emoji in Chrome.
+		 */
+		context.textBaseline = 'top';
+		context.font = '600 32px Arial';
+
+		switch ( type ) {
+			case 'flag':
+				/*
+				 * Test for Transgender flag compatibility. This flag is shortlisted for the Emoji 13 spec,
+				 * but has landed in Twemoji early, so we can add support for it, too.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (white flag emoji + transgender symbol).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0x1F3F3, 0xFE0F, 0x200D, 0x26A7, 0xFE0F ],
+					[ 0x1F3F3, 0xFE0F, 0x200B, 0x26A7, 0xFE0F ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for UN flag compatibility. This is the least supported of the letter locale flags,
+				 * so gives us an easy test for full support.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly ([U] + [N]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDDFA, 0xD83C, 0xDDF3 ],
+					[ 0xD83C, 0xDDFA, 0x200B, 0xD83C, 0xDDF3 ]
+				);
+
+				if ( isIdentical ) {
+					return false;
+				}
+
+				/*
+				 * Test for English flag compatibility. England is a country in the United Kingdom, it
+				 * does not have a two letter locale code but rather an five letter sub-division code.
+				 *
+				 * To test for support, we try to render it, and compare the rendering to how it would look if
+				 * the browser doesn't render it correctly (black flag emoji + [G] + [B] + [E] + [N] + [G]).
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[ 0xD83C, 0xDFF4, 0xDB40, 0xDC67, 0xDB40, 0xDC62, 0xDB40, 0xDC65, 0xDB40, 0xDC6E, 0xDB40, 0xDC67, 0xDB40, 0xDC7F ],
+					[ 0xD83C, 0xDFF4, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC62, 0x200B, 0xDB40, 0xDC65, 0x200B, 0xDB40, 0xDC6E, 0x200B, 0xDB40, 0xDC67, 0x200B, 0xDB40, 0xDC7F ]
+				);
+
+				return ! isIdentical;
+			case 'emoji':
+				/*
+				 * Love is love.
+				 *
+				 * To test for Emoji 12 support, try to render a new emoji: men holding hands, with different skin
+				 * tone modifiers.
+				 *
+				 * When updating this test for future Emoji releases, ensure that individual emoji that make up the
+				 * sequence come from older emoji standards.
+				 */
+				isIdentical = emojiSetsRenderIdentically(
+					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200D, 0xD83E, 0xDD1D, 0x200D, 0xD83D, 0xDC68, 0xD83C, 0xDFFC],
+					[0xD83D, 0xDC68, 0xD83C, 0xDFFE, 0x200B, 0xD83E, 0xDD1D, 0x200B, 0xD83D, 0xDC68, 0xD83C, 0xDFFC]
+				);
+
+				return ! isIdentical;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Adds a script to the head of the document.
+	 *
+	 * @ignore
+	 *
+	 * @since 4.2.0
+	 *
+	 * @param {Object} src The url where the script is located.
+	 * @return {void}
+	 */
+	function addScript( src ) {
+		var script = document.createElement( 'script' );
+
+		script.src = src;
+		script.defer = script.type = 'text/javascript';
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}
+
+	tests = Array( 'flag', 'emoji' );
+
+	settings.supports = {
+		everything: true,
+		everythingExceptFlag: true
+	};
+
+	/*
+	 * Tests the browser support for flag emojis and other emojis, and adjusts the
+	 * support settings accordingly.
+	 */
+	for( ii = 0; ii < tests.length; ii++ ) {
+		settings.supports[ tests[ ii ] ] = browserSupportsEmoji( tests[ ii ] );
+
+		settings.supports.everything = settings.supports.everything && settings.supports[ tests[ ii ] ];
+
+		if ( 'flag' !== tests[ ii ] ) {
+			settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && settings.supports[ tests[ ii ] ];
+		}
+	}
+
+	settings.supports.everythingExceptFlag = settings.supports.everythingExceptFlag && ! settings.supports.flag;
+
+	// Sets DOMReady to false and assigns a ready function to settings.
+	settings.DOMReady = false;
+	settings.readyCallback = function() {
+		settings.DOMReady = true;
+	};
+
+	// When the browser can not render everything we need to load a polyfill.
+	if ( ! settings.supports.everything ) {
+		ready = function() {
+			settings.readyCallback();
+		};
+
+		/*
+		 * Cross-browser version of adding a dom ready event.
+		 */
+		if ( document.addEventListener ) {
+			document.addEventListener( 'DOMContentLoaded', ready, false );
+			window.addEventListener( 'load', ready, false );
+		} else {
+			window.attachEvent( 'onload', ready );
+			document.attachEvent( 'onreadystatechange', function() {
+				if ( 'complete' === document.readyState ) {
+					settings.readyCallback();
+				}
+			} );
+		}
+
+		src = settings.source || {};
+
+		if ( src.concatemoji ) {
+			addScript( src.concatemoji );
+		} else if ( src.wpemoji && src.twemoji ) {
+			addScript( src.twemoji );
+			addScript( src.wpemoji );
+		}
+	}
+
+} )( window, document, window._wpemojiSettings );
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://www.bsd-sys.com/wp-includes/css/dist/block-library/style.css?ver=5.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://www.bsd-sys.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='rgs-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/rgs.css?ver=10.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/font-awesome.min.css?ver=4.6.4' type='text/css' media='all' />
+<link rel='stylesheet' id='main-styles-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/style.css?ver=10.0.1' type='text/css' media='all' />
+<style id='main-styles-inline-css' type='text/css'>
+html body[data-header-resize="1"] .container-wrap, html body[data-header-resize="0"] .container-wrap, body[data-header-format="left-header"][data-header-resize="0"] .container-wrap { padding-top: 0; }
+</style>
+<link rel='stylesheet' id='magnific-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/magnific.css?ver=8.6.0' type='text/css' media='all' />
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='nectar-ie8-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/ie8.css?ver=5.4.1' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='responsive-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/responsive.css?ver=10.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='fullpage-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/fullpage.css?ver=10.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='select2-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/select2.css?ver=6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='dynamic-css-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/dynamic-combined.css?ver=10.0.1' type='text/css' media='all' />
+<style id='dynamic-css-inline-css' type='text/css'>
+body,html{overflow:hidden;height:100%;}.no-rgba #header-space{display:none;}@media only screen and (min-width:1000px){#header-space{display:none;}.nectar-slider-wrap.first-section,.parallax_slider_outer.first-section,.full-width-content.first-section,.parallax_slider_outer.first-section .swiper-slide .content,.nectar-slider-wrap.first-section .swiper-slide .content,#page-header-bg,.nder-page-header,#page-header-wrap,.full-width-section.first-section{margin-top:0!important;}body #page-header-bg,body #page-header-wrap{height:125px;}body #search-outer{z-index:100000;}}@media only screen and (min-width:1000px){#page-header-wrap.fullscreen-header,#page-header-wrap.fullscreen-header #page-header-bg,html:not(.nectar-box-roll-loaded) .nectar-box-roll > #page-header-bg.fullscreen-header,.nectar_fullscreen_zoom_recent_projects,#nectar_fullscreen_rows:not(.afterLoaded) > div{height:100vh;}.wpb_row.vc_row-o-full-height.top-level,.wpb_row.vc_row-o-full-height.top-level > .col.span_12{min-height:100vh;}#page-header-bg[data-alignment-v="middle"] .span_6 .inner-wrap,#page-header-bg[data-alignment-v="top"] .span_6 .inner-wrap{padding-top:105px;}.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh + 2px)!important;}.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded),.admin-bar .nectar-slider-wrap[data-fullscreen="true"]:not(.loaded) .swiper-container{height:calc(100vh - 30px)!important;}}
+</style>
+<link rel='stylesheet' id='skin-ascend-css'  href='https://www.bsd-sys.com/wp-content/themes/salient/css/ascend.css?ver=10.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='js_composer_front-css'  href='https://www.bsd-sys.com/wp-content/plugins/js_composer_salient/assets/css/js_composer.min.css?ver=5.6' type='text/css' media='all' />
+<link rel='stylesheet' id='bsf-Defaults-css'  href='https://www.bsd-sys.com/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=5.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='redux-google-fonts-salient_redux-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3A700%2C500%2C600&#038;ver=1584099647' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-includes/js/jquery/jquery-migrate.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.googletagmanager.com/gtag/js?id=UA-7586037-1' async></script>
+<script type='text/javascript'>
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTNiMT', true);
+gtag('config', 'UA-7586037-1', {"anonymize_ip":true} );
+</script>
+<link rel='https://api.w.org/' href='https://www.bsd-sys.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.bsd-sys.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.bsd-sys.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.4.1" />
+<link rel="canonical" href="https://www.bsd-sys.com/" />
+<link rel='shortlink' href='https://www.bsd-sys.com/' />
+<link rel="alternate" type="application/json+oembed" href="https://www.bsd-sys.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bsd-sys.com%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.bsd-sys.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bsd-sys.com%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.22.0" /><script type="text/javascript"> var root = document.getElementsByTagName( "html" )[0]; root.setAttribute( "class", "js" ); </script><meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://www.bsd-sys.com/wp-content/plugins/js_composer_salient/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]--><!-- Google Tag Manager added by Site Kit -->
+<script>
+( function( w, d, s, l, i ) {
+	w[l] = w[l] || [];
+	w[l].push( {'gtm.start': new Date().getTime(), event: 'gtm.js'} );
+	var f = d.getElementsByTagName( s )[0],
+		j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+	j.async = true;
+	j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+	f.parentNode.insertBefore( j, f );
+} )( window, document, 'script', 'dataLayer', 'GTM-W8HHX5J' );
+</script>
+<!-- End Google Tag Manager -->
+		<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1568381635341{margin-bottom: -10px !important;}.vc_custom_1568382183122{padding-right: 5% !important;}.vc_custom_1568384723354{padding-right: 5% !important;}.vc_custom_1549534718403{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}.vc_custom_1548329827253{padding-right: 3% !important;padding-left: 3% !important;}.vc_custom_1584034171578{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}.vc_custom_1584034225132{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}.vc_custom_1584034232383{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}.vc_custom_1584034308573{background-position: center !important;background-repeat: no-repeat !important;background-size: contain !important;}.vc_custom_1583418936436{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}.vc_custom_1548415400483{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}.vc_custom_1565268989715{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}.vc_custom_1548415400483{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}.vc_custom_1565261161917{margin-right: 0px !important;margin-left: 0px !important;border-right-width: 0px !important;border-left-width: 0px !important;padding-right: 0px !important;padding-left: 0px !important;}</style><noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript> 
+</head>
+
+
+<body class="home page-template-default page page-id-7 ascend wpb-js-composer js-comp-ver-5.6 vc_responsive" data-footer-reveal="false" data-footer-reveal-shadow="none" data-header-format="default" data-body-border="off" data-boxed-style="" data-header-breakpoint="1000" data-dropdown-style="classic" data-cae="easeOutCubic" data-cad="750" data-megamenu-width="contained" data-aie="none" data-ls="magnific" data-apte="standard" data-hhun="1" data-fancy-form-rcs="1" data-form-style="default" data-form-submit="regular" data-is="minimal" data-button-style="rounded_shadow" data-header-inherit-rc="false" data-header-search="false" data-animated-anchors="true" data-ajax-transitions="false" data-full-width-header="true" data-slide-out-widget-area="true" data-slide-out-widget-area-style="slide-out-from-right-hover" data-user-set-ocm="off" data-loading-animation="none" data-bg-header="true" data-responsive="1" data-ext-responsive="true" data-header-resize="0" data-header-color="custom" data-cart="false" data-remove-m-parallax="" data-remove-m-video-bgs="" data-force-header-trans-color="light" data-smooth-scrolling="0" data-permanent-transparent="1" >
+
+<script type="text/javascript"> if(navigator.userAgent.match(/(Android|iPod|iPhone|iPad|BlackBerry|IEMobile|Opera Mini)/)) { document.body.className += " using-mobile-browser "; } </script>  
+<div id="header-space" data-header-mobile-fixed='1'></div> 
+
+	
+<div id="header-outer"  data-has-menu="true" data-has-buttons="no" data-using-pr-menu="false" data-mobile-fixed="1" data-ptnm="false" data-lhe="animated_underline" data-user-set-bg="#b5b5b5" data-format="default" data-permanent-transparent="1" data-megamenu-rt="0" data-remove-fixed="1" data-header-resize="0" data-cart="false" data-transparency-option="" data-box-shadow="small" data-shrink-num="10" data-full-width="true" data-condense="false" data-using-secondary="0" data-using-logo="1" data-logo-height="85" data-m-logo-height="45" data-padding="20" data-transparent-header="true" data-transparent-shadow-helper="true" data-remove-border="true" class="transparent">
+	
+	
+<header id="top">
+  <div class="container">
+	<div class="row">
+	  <div class="col span_3">
+		<a id="logo" href="https://www.bsd-sys.com" data-supplied-ml="false" >
+			<img class="stnd default-logo" alt="BSD-SYS Enterprise IT Security" src="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-grey.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-grey.png 1x, https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-800-150-grey.png 2x" /><img class="starting-logo default-logo"  alt="BSD-SYS Enterprise IT Security" src="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-white.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-white.png 1x, https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-800-150-white.png 2x" /><img class="starting-logo dark-version default-logo"  alt="BSD-SYS Enterprise IT Security" src="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-grey-1.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-400-75-grey-1.png 1x, https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-800-150-grey-1.png 2x" /> 
+		</a>
+		
+			  </div><!--/span_3-->
+	   
+	  <div class="col span_9 col_last">
+				  <div class="slide-out-widget-area-toggle mobile-icon slide-out-from-right-hover" data-icon-animation="simple-transform">
+			<div> <a href="#sidewidgetarea" class="closed"> <span> <i class="lines-button x2"> <i class="lines"></i> </i> </span> </a> </div> 
+		  </div>
+				
+		
+		<nav>
+
+			
+
+						<ul class="buttons" data-user-set-ocm="off">
+
+							   
+			</ul>
+			
+						<ul class="sf-menu">	
+				<li id="menu-item-18" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-18"><a href="https://www.bsd-sys.com/#apropos-02" aria-current="page">A PROPOS</a></li>
+<li id="menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-19"><a href="https://www.bsd-sys.com/#missions-03" aria-current="page">MISSION &#038; SAVOIR-FAIRE</a></li>
+<li id="menu-item-458" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-458"><a href="https://www.bsd-sys.com/#solutions-04" aria-current="page">SOLUTIONS</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-22"><a href="https://www.bsd-sys.com/#contact-06" aria-current="page">CONTACT</a></li>
+			</ul>
+					   
+		</nav>
+
+		
+				
+	  </div><!--/span_9-->
+
+		
+	</div><!--/row-->
+  </div><!--/container-->
+</header>
+			
+	 
+</div><!--/header-outer-->
+
+
+<div id="ajax-content-wrap">
+
+
+<div class="container-wrap">
+	<div class=" main-content">
+		<div class="row">
+			
+			<div id="nectar_fullscreen_rows" data-animation="none" data-row-bg-animation="none" data-animation-speed="medium" data-content-overflow="scrollbar" data-mobile-disable="on" data-dot-navigation="transparent" data-footer="default" data-anchors="on">
+		<div id="fws_5fda39d691650" data-fullscreen-anchor-id="accueil-01" data-midnight="light"  data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row full-width-section standard_section   "  style=""><div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="Accueil" data-content-pos="middle"><div class="full-page-inner"><div class="row-bg-wrap" data-bg-animation="none"><div class="inner-wrap using-image"><div class="row-bg using-image using-bg-color  "  style="background-image: url(https://www.bsd-sys.com/wp-content/uploads/2019/08/bsdsys-backhome.jpg); background-position: center center; background-repeat: no-repeat; background-color: #1c2b32; "></div></div><div class="row-bg-overlay" ></div></div><div class="container"><div class="col span_12 light left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col padding-10-percent"  data-t-w-inherits="default" data-border-radius="none" data-shadow="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="top" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				
+    	<div id="fws_5fda39d691a9b" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<p style="color: #ffffff;text-align: left" class="vc_custom_heading" >EXPERTS DANS LES DOMAINES DE LA CYBERSÉCURITÉ</p>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d691fe8" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col centered-text has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="100"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<h1 style="color: #ffffff;text-align: left" class="vc_custom_heading vc_custom_1568381635341" >L'accompagnement de vos projets de sécurité est le cœur de notre action</h1>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d6921d6" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 vc_hidden-xs wpb_column column_container vc_column_container col centered-text has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="200"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div style="font-size: 16px;color: rgba(255,255,255,0.74);line-height: 28px;text-align: left;font-family:Maven Pro;font-weight:400;font-style:normal" class="vc_custom_heading vc_custom_1568382183122" >15 ans d’expérience au service de la sécurité du Système d'Information<br />
+des Entreprises et des Grands Comptes</div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d69245b" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 vc_hidden-lg vc_hidden-md vc_hidden-sm wpb_column column_container vc_column_container col centered-text has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="200"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div style="font-size: 16px;color: rgba(255,255,255,0.74);line-height: 28px;text-align: left;font-family:Maven Pro;font-weight:400;font-style:normal" class="vc_custom_heading vc_custom_1568384723354" >15 ans d’expérience au service de la sécurité du Système d'Information des Entreprises et des Grands-Comptes</div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d69263e" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 5%; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="grow-in" data-delay="300"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<a class="nectar-button medium regular accent-color  regular-button btn-second-color btn-width-fixed" style="margin-right: 15px; color: #0a3476; "  href="#missions-03" data-color-override="false" data-hover-color-override="false" data-hover-text-color-override="#fff"><span>MISSION</span></a><a class="nectar-button medium regular accent-color  regular-button btn-second-color btn-width-fixed" style="color: #0a3476; "  href="#contact-06" data-color-override="false" data-hover-color-override="false" data-hover-text-color-override="#fff"><span>CONTACT</span></a>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="img-with-aniamtion-wrap center" data-max-width="100%" data-border-radius="none"><div class="inner"><a href="#apropos-02" target="_self" class="center"><img data-shadow="none" data-shadow-direction="middle" class="img-with-animation skip-lazy " data-delay="0" height="110" width="110"  data-animation="fade-in" src="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png 110w, https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01-100x100.png 100w" sizes="100vw" alt="" /></a></div></div>
+			</div> 
+		</div>
+	</div> 
+</div></div></div></div></div></div><!--inner-wrap-->
+		<div id="fws_5fda39d6933c0" data-fullscreen-anchor-id="apropos-02" data-midnight="dark"  data-bg-mobile-hidden="true" class="wpb_row vc_row-fluid vc_row full-width-section standard_section   "  style=""><div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="A propos" data-content-pos="middle"><div class="full-page-inner"><div class="row-bg-wrap" data-bg-animation="none"><div class="inner-wrap using-image"><div class="row-bg using-image using-bg-color  "  style="background-image: url(https://www.bsd-sys.com/wp-content/uploads/2019/08/bsdsys-backabout-2.jpg); background-position: left center; background-repeat: no-repeat; background-color: #fafbfc; "></div></div><div class="row-bg-overlay" ></div></div><div class="container"><div class="col span_12 dark left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col padding-10-percent"  data-t-w-inherits="default" data-border-radius="none" data-shadow="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="top" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				
+    	<div id="fws_5fda39d69352e" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<p style="color: #adadad;text-align: left" class="vc_custom_heading" >NOTRE LEITMOTIV</p><h2 style="color: #334a58;text-align: left" class="vc_custom_heading" >Protéger<br />
+vos Infrastructures</h2><div style="color: #9fa4af;text-align: justify" class="vc_custom_heading" >Présent à Paris, Lyon et Nice depuis plus de 15 ans, la philosophie de BSD-Sys est d'assurer des prestations de haute technicité dans les domaines de la cybersécurité, en privilégiant la qualité de services et l’accompagnement.<br />
+Afin de prendre conscience de l’envergure du projet : délais, complexité, ... , de limiter les risques et d’assurer une qualité de service, pour chacun de ses clients BSD-Sys s’applique à définir une méthodologie orientée gestion de projet.<br />
+Forte d'une culture résolument axée vers la satisfaction du client, notre objectif est de faire aujourd'hui avec vous les choix qui vous feront gagner demain.</div><a class="nectar-button medium regular accent-color  regular-button btn-width-fixed" style="color: #0a3476; "  href="#contact-06" data-color-override="false" data-hover-color-override="false" data-hover-text-color-override="#fff"><span>CONTACT</span></a>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d693995" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="img-with-aniamtion-wrap center" data-max-width="100%" data-border-radius="none"><div class="inner"><a href="#missions-03" target="_self" class="center"><img data-shadow="none" data-shadow-direction="middle" class="img-with-animation skip-lazy " data-delay="0" height="110" width="110"  data-animation="fade-in" src="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png 110w, https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01-100x100.png 100w" sizes="100vw" alt="" /></a></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+			</div> 
+		</div>
+	</div> 
+</div></div></div></div></div></div><!--inner-wrap-->
+		<div id="fws_5fda39d693f9e" data-fullscreen-anchor-id="missions-03" data-midnight="light"  data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row full-width-section standard_section   "  style=""><div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="Missions" data-content-pos="bottom"><div class="full-page-inner"><div class="row-bg-wrap" data-bg-animation="none"><div class="inner-wrap using-image"><div class="row-bg using-image using-bg-color  "  style="background-image: url(https://www.bsd-sys.com/wp-content/uploads/2020/03/bsdsys-backgr-mission-c.jpg); background-position: center bottom; background-repeat: no-repeat; background-color: #334a58; "></div></div><div class="row-bg-overlay" ></div></div><div class="container"><div class="col span_12 light left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col padding-10-percent"  data-t-w-inherits="default" data-border-radius="none" data-shadow="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="top" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				
+    	<div id="fws_5fda39d6942ba" data-midnight="" data-column-margin="none" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section  vc_custom_1549534718403   "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  center">
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element  vc_custom_1583418936436" >
+		<div class="wpb_wrapper">
+			<div class="phma-title-trait" style="color: #ffffff; text-align: center;"><strong>BSD-Sys &lsquo;IT Experts&rsquo;</strong></div>
+
+		</div>
+	</div>
+
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 20px;" class="divider"></div></div>
+    	<div id="fws_5fda39d6946ed" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<h3 style="color: #ffffff;text-align: center" class="vc_custom_heading" >Mission &amp; Savoir-Faire</h3>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d6948cc" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section  vc_custom_1548329827253   "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 vc_hidden-xs wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div style="font-size: 15px;color: #ffffff;line-height: 28px;text-align: center;font-family:Montserrat;font-weight:400;font-style:normal" class="vc_custom_heading" >BSD-Sys assure des prestations de haute technicité dans les domaines de la cybersécurité</div>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 20px;" class="divider"></div></div>
+    	<div id="fws_5fda39d694ac4" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row  vc_row-o-equal-height vc_row-flex  vc_row-o-content-middle standard_section  vc_custom_1584034171578  mobile-without-bg "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div style="" class="vc_col-sm-6 vc_hidden-xs wpb_column column_container vc_column_container col no-extra-padding"  data-using-bg="true" data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="true" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-image-bg-wrap" data-bg-animation="none"><div class="inner-wrap"><div class="column-image-bg" style=" background-image: url('https://www.bsd-sys.com/wp-content/uploads/2020/03/bsdsys-cat-01-1.jpg'); "></div></div></div><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 400px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 25px;" class="divider"></div></div><h4 style="color: #ffffff;text-align: left" class="vc_custom_heading" >Mission</h4><div class="divider-wrap" data-alignment="default"><div style="margin-top: 5px; width: 100px; height: 1px; margin-bottom: 5px;" data-width="100" data-animate="" data-animation-delay="" data-color="accent-color" class="divider-small-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<p>Pour chaque projet nous nous appliquons une organisation éprouvée par la réalisation de plusieurs centaines d&rsquo;installations.</p>
+<p>Notre démarche structurée intègre les étapes de réflexion, de conception, d&rsquo;intégration, de tests, de recette et de suivi de projet. La démarche qualité faisant partie intégrante de notre méthodologie.</p>
+<p>Tous les choix de solutions sont prises après analyse des besoins et validation avec les équipes clientes, ils tiennent compte des capacités techniques de l’environnement de travail et des contraintes associées.</p>
+<p>BSD-Sys regroupe toutes les compétences requises pour traiter la problématique demandée avec la meilleure adéquation de services, de qualité, d’accompagnement, de suivi, d’évolutivité et de pérennité.</p>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d69527a" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row  vc_row-o-equal-height vc_row-flex  vc_row-o-content-middle standard_section  vc_custom_1584034225132  mobile-without-bg "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div><h4 style="color: #ffffff;text-align: left" class="vc_custom_heading" >Savoir-Faire</h4><div class="divider-wrap" data-alignment="default"><div style="margin-top: 5px; width: 100px; height: 1px; margin-bottom: 5px;" data-width="100" data-animate="" data-animation-delay="" data-color="accent-color" class="divider-small-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<p>Sécurité &amp; Supervision :<br />
+&#8211; EndPoint Protection, Chiffrement, DLP<br />
+&#8211; Firewall, Proxy, Filtrage Web &amp; Messages, IPS<br />
+&#8211; Gestion des Logs (SIEM), Infrastructure &amp; Management…</p>
+<p>Prestation de service :<br />
+&#8211; Audit solution, Etude d’Architecture, P.O.C., Pilotage de projets, AMO, Intégration, Migration, Support, Administration, Services managés, Formation, Transfert de compétences…</p>
+<p>Applications spécifiques :<br />
+&#8211; Applications complémentaires, Gestion de Worflow, …</p>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div style="" class="vc_col-sm-6 vc_hidden-xs wpb_column column_container vc_column_container col no-extra-padding"  data-using-bg="true" data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="true" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-image-bg-wrap" data-bg-animation="none"><div class="inner-wrap"><div class="column-image-bg" style=" background-image: url('https://www.bsd-sys.com/wp-content/uploads/2020/03/bsdsys-cat-02-1.jpg'); "></div></div></div><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 400px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d695857" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row  vc_row-o-equal-height vc_row-flex  vc_row-o-content-middle standard_section  vc_custom_1584034232383  mobile-without-bg "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div style="" class="vc_col-sm-6 vc_hidden-xs wpb_column column_container vc_column_container col no-extra-padding"  data-using-bg="true" data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="true" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-image-bg-wrap" data-bg-animation="none"><div class="inner-wrap"><div class="column-image-bg" style=" background-image: url('https://www.bsd-sys.com/wp-content/uploads/2020/03/bsdsys-cat-03-1.jpg'); "></div></div></div><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 400px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div><h4 style="color: #ffffff;text-align: left" class="vc_custom_heading" >Atouts</h4><div class="divider-wrap" data-alignment="default"><div style="margin-top: 5px; width: 100px; height: 1px; margin-bottom: 5px;" data-width="100" data-animate="" data-animation-delay="" data-color="accent-color" class="divider-small-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<p>L&rsquo;audit et le conseil :<br />
+&#8211; Déterminer les solutions d’amélioration de la sécurité du Système d’Information,<br />
+&#8211; Définir et/ou étudier les logiciels les mieux adaptés,<br />
+&#8211; Optimiser des solutions existantes en cours d’exploitation,<br />
+&#8211; Accompagner dans la réalisation et la mise en place de ces solutions.</p>
+<p>En France et à l’International…</p>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d695e55" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row  vc_row-o-equal-height vc_row-flex  vc_row-o-content-middle standard_section  vc_custom_1584034308573  mobile-without-bg "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div><h4 style="color: #ffffff;text-align: left" class="vc_custom_heading" >L'équipe</h4><div class="divider-wrap" data-alignment="default"><div style="margin-top: 5px; width: 100px; height: 1px; margin-bottom: 5px;" data-width="100" data-animate="" data-animation-delay="" data-color="accent-color" class="divider-small-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<p>BSD-Sys met en face des ressources de votre organisation, une équipe dimensionnée pour atteindre les objectifs fixés et agréés contractuellement par BSD-Sys, notamment en matière de livraison opérationnelle.</p>
+<p>L’équipe Expert Services de BSD-Sys est composée d’intervenant du type :<br />
+&#8211; Chef de projet Maîtrise d’œuvre<br />
+&#8211; Intervenants techniques (Architecte, Spécialistes)<br />
+&#8211; Intervenants Experts.</p>
+<p>Chef de projet :<br />
+Le chef de projet BSD-Sys assure le suivi de projet allant de la réunion de lancement jusqu&rsquo;à la signature de la recette. Il met en place et gère le planning pendant les différentes phases du projet. Il s’agit du coordinateur entre votre organisation et nos intervenants.</p>
+<p>Consultant ou Ingénieur d’intervention :<br />
+L’ingénieur BSD-Sys à pour charge l&rsquo;assistance à l&rsquo;étude en amont, à l&rsquo;installation ou à la mise à niveau de l&rsquo;environnement pilote, au paramétrage, aux tests et à la recette finale du projet.</p>
+<p>Expert d&rsquo;intervention :<br />
+Le technicien d’intervention sur site assure l&rsquo;installation des solutions, leurs mises à niveau, leurs configurations et leurs déploiements.</p>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 10px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div style="" class="vc_col-sm-6 vc_hidden-xs wpb_column column_container vc_column_container col no-extra-padding"  data-using-bg="true" data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="true" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-image-bg-wrap" data-bg-animation="none"><div class="inner-wrap"><div class="column-image-bg" style=" background-image: url('https://www.bsd-sys.com/wp-content/uploads/2020/03/bsdsys-cat-04-1.jpg'); "></div></div></div><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div class="divider-wrap" data-alignment="default"><div style="height: 400px;" class="divider"></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 30px;" class="divider"></div></div><div class="img-with-aniamtion-wrap center" data-max-width="100%" data-border-radius="none"><div class="inner"><a href="#solutions-04" target="_self" class="center"><img data-shadow="none" data-shadow-direction="middle" class="img-with-animation skip-lazy " data-delay="0" height="110" width="110"  data-animation="none" src="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png 110w, https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01-100x100.png 100w" sizes="100vw" alt="" /></a></div></div><div class="divider-wrap" data-alignment="default"><div style="height: 550px;" class="divider"></div></div>
+			</div> 
+		</div>
+	</div> 
+</div></div></div></div></div></div><!--inner-wrap-->
+		<div id="fws_5fda39d696652" data-fullscreen-anchor-id="solutions-04" data-midnight="dark"  data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row full-width-section standard_section   "  style=""><div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="Solutions" data-content-pos="middle"><div class="full-page-inner"><div class="row-bg-wrap" data-bg-animation="none"><div class="inner-wrap "><div class="row-bg    "  style=""></div></div><div class="row-bg-overlay" ></div></div><div class="container"><div class="col span_12 dark left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col padding-10-percent"  data-t-w-inherits="default" data-border-radius="none" data-shadow="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="top" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				
+    	<div id="fws_5fda39d696941" data-midnight="" data-column-margin="none" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section  vc_custom_1548415400483   "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  center">
+	<div  class="vc_col-sm-3 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-6 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element  vc_custom_1565268989715" >
+		<div class="wpb_wrapper">
+			<p class="phma-title-trait trait-bg-blue" style="text-align: center;"><strong>NOUS INTEGRONS &amp; METTONS EN OEUVRE</strong></p>
+
+		</div>
+	</div>
+
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-3 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 20px;" class="divider"></div></div>
+    	<div id="fws_5fda39d696bf7" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col has-animation no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<h3 style="color: #334a58;text-align: center" class="vc_custom_heading" >Les solutions des plus grands éditeurs</h3>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 30px;" class="divider"></div></div>
+    	<div id="fws_5fda39d696de3" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Network Security</strong></h4>
+<ul>
+<li>Network Firewall</li>
+<li>Network Monitoring Forencics</li>
+<li>Intrusion Prevention System</li>
+<li>Unified threat Management</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Identify &amp; Access Management</strong></h4>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Cloud Security</strong></h4>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Web Security</strong></h4>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col centered-text padding-3-percent"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="left-right" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>EndPoint Security</strong></h4>
+<ul>
+<li>Endpoint Prevention</li>
+<li>Endpoint Detection &amp; Response</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 18px;" class="divider"></div></div><div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Mobile Security</strong></h4>
+<ul>
+<li>Mobile DeviceManagment</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Messaging Security</strong></h4>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>IDS</strong></h4>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-4 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Security Opérations &amp; Incident Response</strong></h4>
+<ul>
+<li>SIEM</li>
+<li>Security Incident Response</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="height: 23px;" class="divider"></div></div><div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Risk &amp; Compliance</strong></h4>
+<ul>
+<li>Vulnerability Management</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h4><strong>Integrity monitoring</strong></h4>
+<ul>
+<li>Application Security</li>
+</ul>
+
+		</div>
+	</div>
+<div class="divider-wrap" data-alignment="default"><div style="margin-top: 20px; height: 1px; margin-bottom: 20px;" data-width="100%" data-animate="" data-animation-delay="" data-color="extra-color-1" class="divider-border"></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d697786" data-midnight="" data-column-margin="none" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_gallery wpb_content_element clearfix">
+		<div class="wpb_wrapper"><div class="wpb_gallery_slidesflickity_style" data-interval="5"><div class="nectar-flickity not-initialized" data-shadow="none" data-autoplay="true" data-autoplay-dur="" data-free-scroll="" data-controls="none" data-desktop-columns="5" data-small-desktop-columns="3" data-tablet-columns="1"><div class="flickity-viewport"> <div class="flickity-slider"><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-aruba.png" width="600" height="300" alt="bsd-sys-aruba" title="bsd-sys-aruba" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-forcepoint.png" width="600" height="300" alt="bsd-sys-forcepoint" title="bsd-sys-forcepoint" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-fortinet.png" width="600" height="300" alt="bsd-sys-fortinet" title="bsd-sys-fortinet" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-gemalto.png" width="600" height="300" alt="bsd-sys-gemalto" title="bsd-sys-gemalto" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-macafee.png" width="600" height="300" alt="bsd-sys-macafee" title="bsd-sys-macafee" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-microsoft.png" width="600" height="300" alt="bsd-sys-microsoft" title="bsd-sys-microsoft" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-rapid7.png" width="600" height="300" alt="bsd-sys-rapid7" title="bsd-sys-rapid7" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-skybox.png" width="600" height="300" alt="bsd-sys-skybox" title="bsd-sys-skybox" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-sophos.png" width="600" height="300" alt="bsd-sys-sophos" title="bsd-sys-sophos" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-thycotic.png" width="600" height="300" alt="bsd-sys-thycotic" title="bsd-sys-thycotic" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-trendmicro.png" width="600" height="300" alt="bsd-sys-trendmicro" title="bsd-sys-trendmicro" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-tripwire.png" width="600" height="300" alt="bsd-sys-tripwire" title="bsd-sys-tripwire" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/03/bsd-sys-stormshield-1.png" width="600" height="300" alt="bsd-sys-stormshield-1" title="bsd-sys-stormshield-1" /></div><div class="cell"><img class="skip-lazy " src="https://www.bsd-sys.com/wp-content/uploads/2020/12/CylanceWeb3-600x320.jpg" width="600" height="320" alt="CylanceWeb3" title="CylanceWeb3" /></div></div></div></div></div>
+		</div> 
+	</div> 
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d6a32b1" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<a class="nectar-button medium regular accent-color  regular-button btn-second-color btn-width-fixed" style="color: #0a3476; "  href="#contact-06" data-color-override="false" data-hover-color-override="false" data-hover-text-color-override="#fff"><span>CONTACT</span></a><div class="img-with-aniamtion-wrap center" data-max-width="100%" data-border-radius="none"><div class="inner"><a href="#contact-06" target="_self" class="center"><img data-shadow="none" data-shadow-direction="middle" class="img-with-animation skip-lazy " data-delay="0" height="110" width="110"  data-animation="none" src="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png" srcset="https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01.png 110w, https://www.bsd-sys.com/wp-content/uploads/2019/01/phmarc-fleche-01-100x100.png 100w" sizes="100vw" alt="" /></a></div></div>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 150px;" class="divider"></div></div>
+			</div> 
+		</div>
+	</div> 
+</div></div></div></div></div></div><!--inner-wrap-->
+		<div id="fws_5fda39d6a3be8" data-fullscreen-anchor-id="contact-06" data-midnight="light"  data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row full-width-section standard_section   "  style=""><div class="full-page-inner-wrap-outer"><div class="full-page-inner-wrap" data-name="Contact" data-content-pos="middle"><div class="full-page-inner"><div class="row-bg-wrap" data-bg-animation="none"><div class="inner-wrap using-image"><div class="row-bg using-image   "  style="background-image: url(https://www.bsd-sys.com/wp-content/uploads/2019/08/bsdsys-backgr-contact.jpg); background-position: center center; background-repeat: no-repeat; "></div></div><div class="row-bg-overlay" ></div></div><div class="container"><div class="col span_12 light center">
+	<div  class="vc_col-sm-12 wpb_column column_container vc_column_container col padding-10-percent"  data-t-w-inherits="default" data-border-radius="none" data-shadow="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="top" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+			<div class="wpb_wrapper">
+				
+    	<div id="fws_5fda39d6a3e58" data-midnight="" data-column-margin="none" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section  vc_custom_1548415400483   "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  center">
+	<div  class="vc_col-sm-2 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-8 wpb_column column_container vc_column_container col centered-text no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+	<div class="wpb_text_column wpb_content_element  vc_custom_1565261161917" >
+		<div class="wpb_wrapper">
+			<p class="phma-title-trait" style="text-align: center; color: #ffffff;"><strong>UN PROJET, BESOIN D’UN CONSEIL ?</strong></p>
+
+		</div>
+	</div>
+
+		</div> 
+	</div>
+	</div> 
+
+	<div  class="vc_col-sm-2 wpb_column column_container vc_column_container col no-extra-padding"   data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 20px;" class="divider"></div></div><h3 style="color: #ffffff;text-align: center" class="vc_custom_heading" >Contactez-nous</h3>
+    	<div id="fws_5fda39d6a41d8" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div style=" color: #ffffff;" class="vc_col-sm-12 vc_hidden-sm vc_hidden-xs wpb_column column_container vc_column_container col has-animation padding-15-percent" data-cfc="true"  data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="left-right" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div role="form" class="wpcf7" id="wpcf7-f5-p7-o1" lang="fr-FR" dir="ltr">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/#wpcf7-f5-p7-o1" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="5" />
+<input type="hidden" name="_wpcf7_version" value="5.3.1" />
+<input type="hidden" name="_wpcf7_locale" value="fr_FR" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f5-p7-o1" />
+<input type="hidden" name="_wpcf7_container_post" value="7" />
+<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+</div>
+<p><label>Votre Société*<br />
+<span class="wpcf7-form-control-wrap text-668"><input type="text" name="text-668" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre Nom*<br />
+<span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre adresse de messagerie*<br />
+<span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre Téléphone*<br />
+<span class="wpcf7-form-control-wrap tel-484"><input type="tel" name="tel-484" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Sujet<br />
+<span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span></label></p>
+<p><font size="3" color="black"><input type="submit" value="Envoyer" class="wpcf7-form-control wpcf7-submit" /></font></p>
+<div class="wpcf7-response-output" aria-hidden="true"></div></form></div>
+		</div> 
+	</div>
+	</div> 
+</div></div>
+    	<div id="fws_5fda39d6a4fb3" data-midnight="" data-column-margin="default" data-bg-mobile-hidden="" class="wpb_row vc_row-fluid vc_row inner_row standard_section    "  style="padding-top: 0px; padding-bottom: 0px; "><div class="row-bg-wrap"> <div class="row-bg   "  style=""></div> </div><div class="col span_12  left">
+	<div style=" color: #ffffff;" class="vc_col-sm-12 vc_hidden-lg vc_hidden-md wpb_column column_container vc_column_container col has-animation no-extra-padding" data-cfc="true"  data-t-w-inherits="default" data-shadow="none" data-border-radius="none" data-border-animation="" data-border-animation-delay="" data-border-width="none" data-border-style="solid" data-border-color="" data-bg-cover="" data-padding-pos="all" data-has-bg-color="false" data-bg-color="" data-bg-opacity="1" data-hover-bg="" data-hover-bg-opacity="1" data-animation="fade-in-from-bottom" data-delay="0"><div class="column-bg-overlay"></div>
+		<div class="vc_column-inner">
+		<div class="wpb_wrapper">
+			<div role="form" class="wpcf7" id="wpcf7-f5-p7-o2" lang="fr-FR" dir="ltr">
+<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+<form action="/#wpcf7-f5-p7-o2" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
+<div style="display: none;">
+<input type="hidden" name="_wpcf7" value="5" />
+<input type="hidden" name="_wpcf7_version" value="5.3.1" />
+<input type="hidden" name="_wpcf7_locale" value="fr_FR" />
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f5-p7-o2" />
+<input type="hidden" name="_wpcf7_container_post" value="7" />
+<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
+</div>
+<p><label>Votre Société*<br />
+<span class="wpcf7-form-control-wrap text-668"><input type="text" name="text-668" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre Nom*<br />
+<span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre adresse de messagerie*<br />
+<span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Votre Téléphone*<br />
+<span class="wpcf7-form-control-wrap tel-484"><input type="tel" name="tel-484" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" /></span></label></p>
+<p><label>Sujet<br />
+<span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span></label></p>
+<p><font size="3" color="black"><input type="submit" value="Envoyer" class="wpcf7-form-control wpcf7-submit" /></font></p>
+<div class="wpcf7-response-output" aria-hidden="true"></div></form></div>
+		</div> 
+	</div>
+	</div> 
+</div></div><div class="divider-wrap" data-alignment="default"><div style="height: 70px;" class="divider"></div></div>
+			</div> 
+		</div>
+	</div> 
+</div></div></div></div></div></div><!--inner-wrap-->
+</div>
+		</div><!--/row-->
+	</div><!--/container-->
+</div><!--/container-wrap-->
+
+
+<div id="footer-outer" data-midnight="light" data-cols="2" data-custom-color="true" data-disable-copyright="false" data-matching-section-color="true" data-copyright-line="true" data-using-bg-img="false" data-bg-img-overlay="0.8" data-full-width="false" data-using-widget-area="true" >
+	
+  
+<div id="footer-widgets" data-cols="2">
+  
+  <div class="container">
+	
+		
+	<div class="row">
+	   
+	  	   
+	  <div class="col span_6">
+		  <!-- Footer widget area 1 -->
+		  <div id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div align="left">
+<img src="https://www.bsd-sys.com/wp-content/uploads/2019/09/logo-bsd-sys-800-150-grey-1.png" alt="BSD-SYS It Experts & Services"/>
+</div></div></div><div id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div align="left">
+<span style="color: #9b9b9d; font-size: 13px; font-family: montserrat;">
+Présent à Paris, Lyon et Nice depuis plus de 15 ans, BSD-Sys assure des prestations de haute technicité dans le domaine de la cybersécurité en privilégiant la qualité de services et l’accompagnement. BSD-Sys regroupe toutes les compétences requises pour traiter la problématique avec la meilleure adéquation de services, de qualité, d’accompagnement, de suivi, d’évolutivité et de pérennité.
+</span>
+</div></div></div><div id="nav_menu-2" class="widget widget_nav_menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-652"><a href="https://www.bsd-sys.com/politique-de-confidentialite/">Mentions légales</a></li>
+</ul></div></div>	  </div><!--/span_3-->
+	   
+	  
+		<div class="col span_6">
+		   <!-- Footer widget area 2 -->
+			<div id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div id="nav-menu-footer" align="right" style="margin-bottom:80px;">
+<span style="font-weight:bold; font-size:13px; font-family: montserrat; margin-right:20px"><a href="https://www.bsd-sys.com/#apropos-02">A PROPOS</a></span>
+<span style="font-weight: bold; font-size: 13px; font-family: montserrat; margin-right:20px"><a href="https://www.bsd-sys.com/#missions-03">MISSION & SAVOIR-FAIRE</a></span>
+<span style="font-weight: bold; font-size: 13px; font-family: montserrat; margin-right:20px"><a href="https://www.bsd-sys.com/#solutions-04">SOLUTIONS</a></span>
+	<span style="font-weight: bold; font-size: 13px; font-family: montserrat; margin-right:20px"><a href="https://www.bsd-sys.com/#contact-06">CONTACT</a></span>
+</div></div></div><div id="custom_html-3" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div align="right" style="color: #334a58; margin-right:20px">
+<span style="font-weight: bold; font-size: 13px; font-family: montserrat;">BSD-Sys IT Experts & Services</span>
+<br>
+<span style="font-size: 13px; font-family: montserrat;">
+40 rue du Maréchal de Lattre de Tassigny, 69009 Lyon, France</span>
+<br>
+<span style="font-size: 13px; font-family: montserrat;">
+<a href="mailto:contact@contact@bsd-sys.com" style="color:#334a58 !important">contact@bsd-sys.com</a>
+	</span>
+	<br>
+<span style="font-size: 13px; font-family: montserrat;">
++33 (0)4 72 42 93 03
+</span>
+</div></div></div>			
+		</div><!--/span_3-->
+
+		
+	   
+	  	   
+	  	   
+	</div><!--/row-->
+	
+		
+  </div><!--/container-->
+
+</div><!--/footer-widgets-->
+
+	
+
+  <div class="row" id="copyright" data-layout="default">
+	
+	<div class="container">
+	   
+				<div class="col span_5">
+		   
+					   
+						<p>
+				@2020 BSD-SYS. Tous droits réservés.			 </p>	
+					   
+		</div><!--/span_5-->
+			   
+	  <div class="col span_7 col_last">
+		<ul class="social">
+					  		  		  		  			 <li><a target="_blank" href="https://www.linkedin.com/in/gilles-garnier-49699821"><i class="fa fa-linkedin"></i> </a></li> 		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		  		</ul>
+	  </div><!--/span_7-->
+
+	  	
+	</div><!--/container-->
+	
+  </div><!--/row-->
+  
+	
+</div><!--/footer-outer-->
+
+
+	<div id="slide-out-widget-area-bg" class="slide-out-from-right-hover dark">
+				 	</div>
+  
+	<div id="slide-out-widget-area" class="slide-out-from-right-hover" data-dropdown-func="default" data-back-txt="Back">
+
+		
+				<div class="inner" data-prepend-menu-mobile="false">
+
+		  <a class="slide_out_area_close" href="#">
+			<span class="icon-salient-x icon-default-style"></span>		  </a>
+
+
+		   			   <div class="off-canvas-menu-container mobile-only">
+					 
+					  						
+					  <ul class="menu">
+						<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-18"><a href="https://www.bsd-sys.com/#apropos-02" aria-current="page">A PROPOS</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-19"><a href="https://www.bsd-sys.com/#missions-03" aria-current="page">MISSION &#038; SAVOIR-FAIRE</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-458"><a href="https://www.bsd-sys.com/#solutions-04" aria-current="page">SOLUTIONS</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-22"><a href="https://www.bsd-sys.com/#contact-06" aria-current="page">CONTACT</a></li>
+		
+					</ul>
+
+					<ul class="menu secondary-header-items">
+										</ul>
+				</div>
+				
+		</div>
+
+		<div class="bottom-meta-wrap"></div><!--/bottom-meta-wrap-->
+	</div>
+
+
+</div> <!--/ajax-content-wrap-->
+
+
+	<a id="to-top" class="
+		"><i class="fa fa-angle-up"></i></a>
+			<!-- Google Tag Manager (noscript) added by Site Kit -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8HHX5J" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<link rel='stylesheet' id='vc_google_fonts_maven_proregular500700900-css'  href='https://fonts.googleapis.com/css?family=Maven+Pro%3Aregular%2C500%2C700%2C900&#038;ver=5.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='vc_google_fonts_montserratregular700-css'  href='https://fonts.googleapis.com/css?family=Montserrat%3Aregular%2C700&#038;ver=5.4.1' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.bsd-sys.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.3.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/priority.js?ver=10.0.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/modernizr.js?ver=2.6.2'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/imagesLoaded.min.js?ver=4.1.4'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/magnific.js?ver=7.0.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/jquery.fullPage.min.js?ver=10.0.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/superfish.js?ver=1.4.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var nectarLove = {"ajaxurl":"https:\/\/www.bsd-sys.com\/wp-admin\/admin-ajax.php","postID":"7","rooturl":"https:\/\/www.bsd-sys.com","pluginPages":[],"disqusComments":"false","loveNonce":"f6267a6697","mapApiKey":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/init.js?ver=10.0.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/touchswipe.min.js?ver=1.0'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/select2.min.js?ver=3.5.2'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-includes/js/wp-embed.js?ver=5.4.1'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/plugins/js_composer_salient/assets/js/dist/js_composer_front.min.js?ver=5.6'></script>
+<script type='text/javascript' src='https://www.bsd-sys.com/wp-content/themes/salient/js/flickity.min.js?ver=2.1.2'></script>
+
+</body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Page Caching using disk: enhanced 
+
+Served from: www.bsd-sys.com @ 2020-12-16 17:46:14 by W3 Total Cache
+-->
